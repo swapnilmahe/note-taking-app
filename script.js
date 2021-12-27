@@ -1,12 +1,12 @@
 //Declare the installed modules express and body-parser.
 const express = require('express');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 //Pre defined data
 let note = [{ id: 1, body: 'We have a text' }, { id: 2, body: 'This is a second text' }];
 
 //call the express and Body-parser
 const app = express();
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.urlencoded())
 
 //serving static files
 // app.use(express.static('public'));
@@ -34,7 +34,7 @@ app.post("/addNotes",  (req, res)=> {
 //Handling the delete request
 
 app.post('/deleteNote/:id', (req, res)=> {
-  console.log(req.params.id);
+  // console.log(req.params.id);
   const deleteNotes = note.filter(item => item.id != req.params.id);
   note = deleteNotes;
   return res.redirect('/');

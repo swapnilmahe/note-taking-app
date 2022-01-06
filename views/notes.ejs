@@ -2,7 +2,7 @@
 
 <head>
   <title>SIMPLE NOTE APP</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
 
 <body>
@@ -14,8 +14,9 @@
           <textarea class="form-control" type="text" name="newNote" id="newNote" placeholder="Add new Note"></textarea>
           <button class="btn btn-success" type="submit">Add Note</button>
         </div>
+      </form>
+
     </div>
-    </form>
 
     <!-- we create a table for the inputted notes -->
     <table class="table">
@@ -23,32 +24,52 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">NOTES</th>
-          <th scope="col">ACTION</th>
+          <th scope="col">ACTION 1</th>
+          <th scope="col">ACTION 2</th>
         </tr>
       </thead>
       <tbody>
-        <% note.map((i, index) => { %>
-<tr>
-  <th scope="row"><%= index+1 %></th>
-        <td><%= i.body %></td>
-        <td>
-          <form action='<%= /deleteNote/ +i.id%>' method="POST">
-            <button type="submit" class="btn btn-danger">Delete</button>
-          </form>
-        </td>
-        </tr>
-        <% }) %>
-
-
+        <% note.map((i, index)=> { %>
+          <tr>
+            <th scope="row">
+              <%= index+1 %>
+            </th>
+            <td class="tables" >
+             <input class="nee" name="inputs" value="<%= i.body %>" disabled>
+            </td>
+            <td>
+              <form action="<%= /deleteNote/ +i.id%>" method="POST">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </td>
+            <td>
+              <form action="<%= /updateNote/ +i.id%>" method="POST">
+                <button type="submit" class="btn btn-warning" >Update</button>
+              </form>
+            </td>
+          </tr>
+          <% }) %>
       </tbody>
     </table>
+    <button type="submit" onclick="store()" class="btn btn-success">Store Notes</button>
+    <button type="submit" onclick="show()" class="btn btn-success">Show Notes</button>
+    <p id="display">Stored data will come here</p>
+
+    <form action="/searchit" method="POST">
+      <input type="text" name="search" id="searchInput">
+      <button id="search" class="btn btn-primary" type="submit">Searh</button>
+      
+    </form>
 
     <div class="footer">
       <p>Copyright &copy 2020 ZinnyCodes</p>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</body>
+    <script src="index.js"></script>
 
+  </div>
+</body>
 
 </html>
